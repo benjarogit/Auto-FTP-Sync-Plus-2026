@@ -21,3 +21,4 @@ addons/**/*.zip
 # Development tools and docs (local only, not on GitHub)
 gitpush.sh
 ENTWICKLUNG.md
+tools/
