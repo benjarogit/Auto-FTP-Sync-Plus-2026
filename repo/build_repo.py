@@ -44,9 +44,85 @@ def make_zip(addon_id: str, out_dir: Path) -> str:
                 if f.endswith(".zip"):
                     continue
                 full = Path(root_dir) / f
-                arc = full.relative_to(src)
+                rel = full.relative_to(src)
+                # Kodi expects first ZIP entry to be the addon-id folder (repository.dokukanal/...)
+                arc = f"{addon_id}/{rel.as_posix()}"
                 zf.write(full, arc)
     return zip_name
+
+
+def _normalize_zip_name(n: str) -> str:
+    return n.replace("\\", "/")
+
+
+def validate_addon_zip(zip_path: Path, addon_id: str) -> list[str]:
+    """
+    Validate addon ZIP: structure (Kodi expects addon-id folder first), addon.xml
+    well-formed and required fields, and that referenced assets exist in the ZIP.
+    Returns list of error messages; empty if valid.
+    """
+    errors: list[str] = []
+    with zipfile.ZipFile(zip_path, "r") as zf:
+        names = [n.replace("\\", "/") for n in zf.namelist()]
+
+    if not names:
+        errors.append("ZIP is empty")
+        return errors
+
+    # 1) Structure: first entry must be addon_id/...
+    first = names[0]
+    if not first.startswith(addon_id + "/"):
+        errors.append(f"First ZIP entry must be '{addon_id}/...', got: {first}")
+
+    addon_xml_path = f"{addon_id}/addon.xml"
+    if addon_xml_path not in names:
+        errors.append(f"ZIP must contain '{addon_xml_path}'")
+        return errors  # cannot continue without addon.xml
+
+    # 2) Parse addon.xml (syntax + content)
+    with zipfile.ZipFile(zip_path, "r") as zf:
+        try:
+            xml_bytes = zf.read(addon_xml_path)
+            root = ET.fromstring(xml_bytes)
+        except ET.ParseError as e:
+            errors.append(f"addon.xml is not valid XML: {e}")
+            return errors
+
+    if root.tag != "addon":
+        errors.append(f"addon.xml root element must be <addon>, got <{root.tag}>")
+
+    xml_id = root.get("id")
+    if not xml_id:
+        errors.append("addon.xml: missing attribute 'id'")
+    elif xml_id != addon_id:
+        errors.append(f"addon.xml: id must be '{addon_id}', got '{xml_id}'")
+
+    version = root.get("version")
+    if not version or not version.strip():
+        errors.append("addon.xml: missing or empty 'version'")
+    else:
+        v = version.strip()
+        if not all(c in "0123456789." for c in v.replace(".", "")):
+            errors.append(f"addon.xml: version should be numeric (e.g. 1.0.0), got '{version}'")
+
+    if not (root.get("name") or "").strip():
+        errors.append("addon.xml: missing or empty 'name'")
+
+    # 3) Referenced assets (icon, fanart, screenshots) must exist in ZIP
+    prefix = addon_id + "/"
+    zip_set = set(names)
+    for ext in root.findall(".//extension[@point='xbmc.addon.metadata']"):
+        assets = ext.find("assets")
+        if assets is None:
+            continue
+        for tag in ("icon", "fanart", "screenshot"):
+            for node in assets.findall(tag):
+                if node.text:
+                    path_in_zip = prefix + node.text.strip().replace("\\", "/")
+                    if path_in_zip not in zip_set:
+                        errors.append(f"addon.xml references missing file: {node.text.strip()}")
+
+    return errors
 
 
 def get_addon_xml_string(addon_id: str) -> str:
@@ -116,7 +192,15 @@ def main():
     for addon_id in ADDON_IDS:
         try:
             zip_name = make_zip(addon_id, out_dir)
+            zip_path = out_dir / zip_name
+            val_errors = validate_addon_zip(zip_path, addon_id)
+            if val_errors:
+                raise SystemExit(
+                    f"Validation failed: {zip_name}\n  " + "\n  ".join(val_errors)
+                )
             print(f"Created {zip_name}")
+        except SystemExit:
+            raise
         except Exception as e:
             print(f"ZIP {addon_id}: {e}")
     build_addons_xml(out_dir)
