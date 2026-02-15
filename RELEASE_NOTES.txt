@@ -1,0 +1,11 @@
+# Stichpunkte für den nächsten Release – werden in CHANGELOG.md und GitHub-Release übernommen, danach geleert.
+# Eine Zeile pro Änderung, mit "- " beginnen. Optional: Block "### English" für englische Fassung (sonst = gleicher Text).
+# Beispiel:
+# - Sync: Fehler bei SMB behoben
+# - Skin: Einstellungen-Layout angepasst
+#
+# ### English
+# - Sync: fixed SMB error
+# - Skin: adjusted settings layout
+#
+
