@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.dokukanal" name="Doku-Kanal Repository" version="1.0.1" provider-name="Doku-Kanal">
+<addon id="repository.dokukanal" name="Doku-Kanal Repository" version="1.0.2" provider-name="Doku-Kanal">
 	<extension point="xbmc.addon.repository">
 		<!-- Repo served from GitHub raw; branch: main -->
 		<dir>
 			<info>https://raw.githubusercontent.com/benjarogit/Auto-FTP-Sync-Plus-2026/main/repo/output/addons.xml</info>
 			<checksum>https://raw.githubusercontent.com/benjarogit/Auto-FTP-Sync-Plus-2026/main/repo/output/addons.xml.md5</checksum>
 			<datadir>https://raw.githubusercontent.com/benjarogit/Auto-FTP-Sync-Plus-2026/main/repo/output/</datadir>
-			<hashes>sha256</hashes>
 		</dir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
