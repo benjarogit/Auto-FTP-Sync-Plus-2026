@@ -49,25 +49,6 @@ Installation order: (1) install the repo addon from ZIP once, (2) enable unknown
 - **addons.xml.md5:** `https://raw.githubusercontent.com/benjarogit/Auto-FTP-Sync-Plus-2026/main/repo/output/addons.xml.md5`
 - **ZIP downloads:** `https://raw.githubusercontent.com/benjarogit/Auto-FTP-Sync-Plus-2026/main/repo/output/`
 
-### Project structure
-
-- **addons/** – Plugin and skin source code (`plugin.program.auto.ftp.sync`, `skin.arctic.zephyr.doku`)
-- **repo/** – Build script and repo addon (`build_repo.py`, `repository.dokukanal/`, `output/`)
-- **CHANGELOG.md** – Version history
-- **README.md** – This file
-
-Addon sources for build and GitHub are in `addons/`. For local Kodi testing, copy contents of `addons/plugin.program.auto.ftp.sync` (and optionally the skin) to `.kodi/addons/`.
-
-### Build (for developers)
-
-From the repo root (where `addons/` and `repo/` are):
-
-```bash
-python3 repo/build_repo.py
-```
-
-Output is in `repo/output/`. Commit that folder after a release so Kodi can fetch new versions from GitHub.
-
 ### Versioning
 
 [Semantic Versioning 2.0.0](https://semver.org/) (MAJOR.MINOR.PATCH). First release: **1.0.0**.
@@ -123,25 +104,6 @@ Reihenfolge: (1) Repo-Addon einmal per ZIP installieren, (2) bei Bedarf „Unbek
 - **addons.xml:** `https://raw.githubusercontent.com/benjarogit/Auto-FTP-Sync-Plus-2026/main/repo/output/addons.xml`
 - **addons.xml.md5:** `https://raw.githubusercontent.com/benjarogit/Auto-FTP-Sync-Plus-2026/main/repo/output/addons.xml.md5`
 - **ZIP-Downloads:** `https://raw.githubusercontent.com/benjarogit/Auto-FTP-Sync-Plus-2026/main/repo/output/`
-
-### Projektstruktur
-
-- **addons/** – Quellcode von Plugin und Skin (`plugin.program.auto.ftp.sync`, `skin.arctic.zephyr.doku`)
-- **repo/** – Build-Skript und Repo-Addon (`build_repo.py`, `repository.dokukanal/`, `output/`)
-- **CHANGELOG.md** – Versionshistorie
-- **README.md** – diese Datei
-
-Die Addon-Quellen für Build und GitHub liegen in `addons/`. Für lokale Kodi-Tests kannst du die Inhalte von `addons/plugin.program.auto.ftp.sync` und ggf. den Skin nach `.kodi/addons/` kopieren.
-
-### Build (für Entwickler)
-
-Aus dem Repo-Root (dort, wo `addons/` und `repo/` liegen):
-
-```bash
-python3 repo/build_repo.py
-```
-
-Die Ausgabe liegt in `repo/output/`. Nach einem Release diesen Ordner committen, damit Kodi die neuen Versionen von GitHub laden kann.
 
 ### Versionierung
 
