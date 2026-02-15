@@ -32,7 +32,7 @@
 		</assets>
 	</extension>
 </addon>
-<addon id="repository.dokukanal" name="Doku-Kanal Repository" version="1.0.10" provider-name="Doku-Kanal">
+<addon id="repository.dokukanal" name="Doku-Kanal Repository" version="1.0.11" provider-name="Doku-Kanal">
 	<requires>
 		<import addon="xbmc.addon" version="21.0.0"/>
 	</requires>
