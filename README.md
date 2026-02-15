@@ -31,14 +31,16 @@
 
 Installation order: (1) install the repo addon from ZIP once, (2) enable unknown sources if required, (3) install the addon (and optionally the skin) from the repo. After that, updates are delivered through the repo.
 
+**Where to download:** Use the [Releases](https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases) page. Under **Assets** you will find the ready-to-use Kodi ZIPs (repository, plugin, skin). Do **not** use “Source code (zip)” – that is the full development source; use the files listed under **Assets** instead.
+
 1. **Install the repo addon (one-time)**  
-   Download `repository.dokukanal-1.0.0.zip` from [Releases](https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases) (or from the repo `output/` folder). In Kodi go to **Add-ons** → **Add-on browser** (or **Install from zip file**) → **Install from zip file** and select the downloaded ZIP. This installs the Doku-Kanal repository; all future updates come from this repo, no need to download the repo ZIP again.
+   On the [Releases](https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases) page, open the latest release and under **Assets** download **repository.dokukanal-1.0.0.zip**. In Kodi go to **Add-ons** → **Add-on browser** → **Install from zip file** and select that ZIP. This installs the Doku-Kanal repository; all future updates come from the repo.
 
 2. **Unknown sources**  
    If Kodi asks to allow unknown sources, go to **Settings** → **Add-ons** → **Unknown sources** and enable it. This is only needed for the first install from ZIP.
 
 3. **Install addon and skin from the repo**  
-   **Add-ons** → **Add-on browser** → **Install from repository** → select **Doku-Kanal** → install **Auto FTP Sync**. Optionally install the skin **Arctic Zephyr – Doku-Kanal** from the same repository (look under Look and feel / Skins or in the program addons list).
+   **Add-ons** → **Add-on browser** → **Install from repository** → select **Doku-Kanal** → install **Auto FTP Sync**. Optionally install the skin **Arctic Zephyr – Doku-Kanal** from the same repository. Alternatively, you can install the addon and skin from ZIP using the files under **Assets** on the Release page (**plugin.program.auto.ftp.sync-1.0.0.zip**, **skin.arctic.zephyr.doku-1.0.0.zip**).
 
 4. **Updates**  
    Once the repo is installed, Kodi will check for updates automatically. The repo points to this GitHub repository; you get new addon and skin versions through **Add-ons** → **My add-ons** → **Check for updates** or when Kodi updates on its own.
@@ -87,14 +89,16 @@ Installation order: (1) install the repo addon from ZIP once, (2) enable unknown
 
 Reihenfolge: (1) Repo-Addon einmal per ZIP installieren, (2) bei Bedarf „Unbekannte Quellen“ erlauben, (3) Addon (und optional Skin) aus dem Repo installieren. Danach kommen Updates über das Repo.
 
+**Wo herunterladen:** Auf der Seite [Releases](https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases) findest du unter **Assets** die fertigen Kodi-ZIPs (Repository, Plugin, Skin). **Nicht** „Source code (zip)“ verwenden – das ist der komplette Quellcode; nutze die Dateien unter **Assets**.
+
 1. **Repo-Addon einmalig installieren**  
-   `repository.dokukanal-1.0.0.zip` von den [Releases](https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases) (oder aus dem Ordner `repo/output/`) herunterladen. In Kodi **Add-ons** → **Addon-Browser** (bzw. **Von ZIP-Datei installieren**) → **Von ZIP-Datei installieren** wählen und die ZIP-Datei auswählen. Damit ist das Doku-Kanal-Repository installiert; alle weiteren Updates kommen über dieses Repo, das Repo-ZIP brauchst du nur einmal.
+   Auf der Seite [Releases](https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases) das neueste Release öffnen und unter **Assets** **repository.dokukanal-1.0.0.zip** herunterladen. In Kodi **Add-ons** → **Addon-Browser** → **Von ZIP-Datei installieren** wählen und diese ZIP auswählen. Damit ist das Doku-Kanal-Repository installiert; alle weiteren Updates kommen über das Repo.
 
 2. **Unbekannte Quellen**  
    Falls Kodi danach fragt: **Einstellungen** → **Add-ons** → **Unbekannte Quellen** erlauben. Nur für die erste Installation von einer ZIP nötig.
 
 3. **Addon und Skin aus dem Repo installieren**  
-   **Add-ons** → **Addon-Browser** → **Addons aus Repository installieren** → **Doku-Kanal** wählen → **Auto FTP Sync** installieren. Optional den Skin **Arctic Zephyr – Doku-Kanal** aus demselben Repository installieren (unter Darstellung/Skins oder bei den Programm-Addons).
+   **Add-ons** → **Addon-Browser** → **Addons aus Repository installieren** → **Doku-Kanal** wählen → **Auto FTP Sync** installieren. Optional den Skin **Arctic Zephyr – Doku-Kanal** aus demselben Repository installieren. Alternativ kannst du Addon und Skin per ZIP aus den **Assets** des Releases installieren (**plugin.program.auto.ftp.sync-1.0.0.zip**, **skin.arctic.zephyr.doku-1.0.0.zip**).
 
 4. **Updates**  
    Sobald das Repo installiert ist, prüft Kodi automatisch auf Updates. Das Repo zeigt auf dieses GitHub-Repository; neue Addon- und Skin-Versionen erhältst du über **Add-ons** → **Meine Add-ons** → **Auf Updates prüfen** oder durch die automatische Update-Prüfung von Kodi.

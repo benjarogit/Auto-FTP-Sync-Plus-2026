@@ -20,7 +20,7 @@ Der **gesamte Inhalt** von `repo/output/` kommt in **ein** Verzeichnis auf dem S
 - `addons.xml.md5`
 - `plugin.program.auto.ftp.sync-1.0.x.zip`
 - `repository.dokukanal-1.0.0.zip`
-- `skin.arctic.zephyr.doku-3.0.3.zip` (falls Skin mitgebaut wird)
+- `skin.arctic.zephyr.doku-1.0.0.zip` (falls Skin mitgebaut wird)
 
 Keine Unterordner nötig – Kodi erwartet die ZIPs und die beiden XML-Dateien im gleichen Verzeichnis wie die `<datadir>`-URL.
 
