@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <!-- Allgemeine Einstellungen -->
+    <category label="30001"> <!-- General Settings -->
+        <!-- Globale Schalter -->
+        <setting id="enable_sync" type="bool" label="30002" default="false" />
+        <setting id="is_main_system" type="bool" label="30003" default="true" />
+        <setting id="addon_sync" type="bool" label="30004" default="true" />
+    </category>
+    
+    <!-- Favoriten-Einstellungen -->
+    <category label="30005">
+        <setting id="custom_folder" type="text" label="30006" default=""/>
+        <setting id="specific_custom_folder" type="text" label="30007" default=""/>
+        <setting id="overwrite_static" type="bool" label="30008" default="false"/>
+        <setting id="static_folders" type="text" label="30009" default="Anime,Horror,Marvel,Goat"/>
+    </category>
+    
+    <!-- Verbindungsprofile: Aktives Profil + Profil 1 (Standard) -->
+    <category label="30010">
+        <setting id="active_profile" type="enum" label="30087" values="Profile 1|Profile 2|Profile 3" default="0"/>
+        <setting id="connection_type" type="enum" label="30082" values="FTP|SFTP|SMB" default="0"/>
+        <setting id="sftp_port" type="text" label="30083" default="22" enable="eq(-1,1)"/>
+        <setting id="ftp_base_path" type="text" label="30011" default=""/>
+        <setting id="ftp_host" type="text" label="30012" default=""/>
+        <setting id="ftp_user" type="text" label="30013" default=""/>
+        <setting id="ftp_pass" type="text" label="30014" option="hidden" default=""/>
+    </category>
+    <!-- Profil 2 -->
+    <category label="30089">
+        <setting id="profile_2_name" type="text" label="30091" default=""/>
+        <setting id="profile_2_connection_type" type="enum" label="30082" values="FTP|SFTP|SMB" default="0"/>
+        <setting id="profile_2_sftp_port" type="text" label="30083" default="22" enable="eq(-1,1)"/>
+        <setting id="profile_2_base_path" type="text" label="30011" default=""/>
+        <setting id="profile_2_host" type="text" label="30012" default=""/>
+        <setting id="profile_2_user" type="text" label="30013" default=""/>
+        <setting id="profile_2_pass" type="text" label="30014" option="hidden" default=""/>
+    </category>
+    <!-- Profil 3 -->
+    <category label="30090">
+        <setting id="profile_3_name" type="text" label="30091" default=""/>
+        <setting id="profile_3_connection_type" type="enum" label="30082" values="FTP|SFTP|SMB" default="0"/>
+        <setting id="profile_3_sftp_port" type="text" label="30083" default="22" enable="eq(-1,1)"/>
+        <setting id="profile_3_base_path" type="text" label="30011" default=""/>
+        <setting id="profile_3_host" type="text" label="30012" default=""/>
+        <setting id="profile_3_user" type="text" label="30013" default=""/>
+        <setting id="profile_3_pass" type="text" label="30014" option="hidden" default=""/>
+    </category>
+    
+    <!-- Bild-Optionen -->
+    <category label="30015">
+        <setting id="image_source" type="enum" label="30084" values="URL list|Local folder|Network path" default="0"/>
+        <setting id="image_list_url" type="text" label="30016" default="http://domain.de/images.txt" enable="eq(-1,0)"/>
+        <setting id="image_local_folder" type="folder" label="30085" default="" enable="eq(-2,1)"/>
+        <setting id="image_network_path" type="text" label="30086" default="" enable="eq(-3,2)"/>
+        <setting id="enable_image_rotation" type="bool" label="30017" default="true"/> 
+    </category>
+
+    <!-- Extra Optionen -->
+    <category label="30036">
+        <setting id="startup_file" type="bool" label="30037" default="false" />
+    </category>
+
+    <!-- Backup / Restore -->
+    <category label="30038">
+        <setting id="backup_path" type="folder" label="30051" default=""/>
+        <setting id="backup_include_addon_data" type="bool" label="30081" default="true"/>
+        <setting id="restore_path" type="folder" label="30052" default="" visible="false"/>
+        <setting id="restore_wipe" type="bool" label="30053" default="false"/>
+    </category>
+
+    <!-- Auto-Clean -->
+    <category label="30054">
+        <setting id="autoclean_enabled" type="bool" label="30055" default="false"/>
+        <setting id="autoclean_freq" type="enum" label="30056" values="Always|Daily|Every 3 Days|Weekly|Monthly" default="3" enable="eq(-1,true)"/>
+        <setting id="autoclean_clearcache" type="bool" label="30057" default="true" enable="eq(-2,true)"/>
+        <setting id="autoclean_clearpackages" type="bool" label="30058" default="true" enable="eq(-3,true)"/>
+        <setting id="autoclean_clearthumbs" type="bool" label="30059" default="false" enable="eq(-4,true)"/>
+        <setting id="autoclean_clearlogs" type="bool" label="30077" default="false" enable="eq(-5,true)"/>
+        <setting id="autoclean_clearaddoncaches" type="bool" label="30078" default="false" enable="eq(-6,true)"/>
+        <setting id="autoclean_nextrun" type="text" visible="false" default=""/>
+    </category>
+
+    <!-- Info: Anleitung im Plugin-Menü unter „Anleitung & Einrichtung“ -->
+    <category label="30075">
+        <setting id="info_guide_hint" type="text" label="30076" default="" />
+    </category>
+
+    <!-- Ersteinrichtung (nur intern) -->
+    <setting id="first_run_done" type="bool" default="false" visible="false"/>
+</settings>

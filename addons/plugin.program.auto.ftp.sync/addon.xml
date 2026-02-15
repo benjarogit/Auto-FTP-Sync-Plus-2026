@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<addon id="plugin.program.auto.ftp.sync" version="1.0.0" name="Auto FTP Sync" provider-name="Doku-Kanal">
+	<requires>
+		<import addon="xbmc.python" version="3.0.0"/>
+	</requires>
+	<extension point="xbmc.service" library="auto_ftp_sync.py" start="startup"/>
+	<extension point="xbmc.python.pluginsource" library="plugin.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en_gb">
+  Sync favourites and addon_data via FTP, SFTP or SMB. Built-in static favourite folders (no Super Favourites). Profiles, wizard, backup, image rotation.
+        </summary>
+		<summary lang="de_de">
+  Favoriten und addon_data per FTP, SFTP oder SMB synchronisieren. Integrierte statische Favoritenordner (ohne Super Favourites). Profile, Assistent, Backup, Bildrotation.
+        </summary>
+		<description lang="en_gb">
+  Sync your Kodi favourites and addon_data across devices using FTP, SFTP or SMB. Static favourite folders (e.g. Anime, Horror) are built in – no Super Favourites addon required. Set up to 3 connection profiles and choose the active one in Settings under Connection. First-run wizard, optional addon_data sync as ZIP, background image rotation (URL, local or network path). Backup and restore under Maintenance. Requires Kodi 21 (Omega) or newer.
+</description>
+		<description lang="de_de">
+  Favoriten und addon_data zwischen Geräten per FTP, SFTP oder SMB synchronisieren. Statische Favoritenordner (z. B. Anime, Horror) sind integriert – kein Super Favourites nötig. Bis zu 3 Verbindungsprofile, aktives Profil in Einstellungen unter Verbindung. Ersteinrichtungs-Assistent, optional addon_data als ZIP, Bildrotation. Backup und Wiederherstellung unter Wartung. Erfordert Kodi 21 (Omega) oder neuer.
+</description>
+		<language addon="resource.language.en_gb" />
+		<language addon="resource.language.de_de" />
+		<platform>all</platform>
+		<news>[CR]1.0.0 – Erstes Release: Sync (FTP/SFTP/SMB), Profile, Assistent, Backup, Bildrotation, Auto-Clean.[CR]
+		</news>
+		<assets>
+			<icon>resources/images/icon.png</icon>
+		</assets>
+	</extension>
+</addon>

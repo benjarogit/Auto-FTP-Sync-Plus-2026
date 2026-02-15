@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# repo/output/ is NOT ignored – it is committed so GitHub can serve addons.xml and ZIPs.
