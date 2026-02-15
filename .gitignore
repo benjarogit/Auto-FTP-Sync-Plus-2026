@@ -13,4 +13,7 @@ Thumbs.db
 # Logs
 *.log
 
+# Addon-ZIPs nur unter repo/output/ (Build-Artefakte); keine ZIPs in addons/ committen
+addons/**/*.zip
+
 # repo/output/ is NOT ignored – it is committed so GitHub can serve addons.xml and ZIPs.
