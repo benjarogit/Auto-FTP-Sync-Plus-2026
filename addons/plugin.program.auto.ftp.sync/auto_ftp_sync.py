@@ -20,75 +20,123 @@ import zipfile
 # =========================
 #
 
-# Aktivierung
 ADDON = xbmcaddon.Addon()
-ENABLED = ADDON.getSettingBool('enable_sync')
-IS_MAIN_SYSTEM = ADDON.getSettingBool('is_main_system')
 
-# Favouriten
-OVERWRITE_STATIC = ADDON.getSettingBool('overwrite_static')
-CUSTOM_FOLDER = ADDON.getSettingString('custom_folder')
-SPECIFIC_CUSTOM_FOLDER = ADDON.getSettingString('specific_custom_folder')
 
-# Pfade (FTP_PATH wird dynamisch aus aktivem Profil gebaut)
+def _safe_get_bool(setting_id, default=False):
+    """Liest Bool-Setting. Bei Invalid setting type: Default zurückschreiben (repariert Speicher), dann zurückgeben."""
+    try:
+        return ADDON.getSettingBool(setting_id)
+    except (TypeError, Exception):
+        try:
+            ADDON.setSettingBool(setting_id, default)
+        except Exception:
+            pass
+        return default
+
+
+def _safe_get_string(setting_id, default=''):
+    """Liest String-Setting. Bei Fehler: Default zurückschreiben (repariert Speicher), dann zurückgeben."""
+    try:
+        return ADDON.getSettingString(setting_id) or default
+    except (TypeError, Exception):
+        try:
+            ADDON.setSettingString(setting_id, default)
+        except Exception:
+            pass
+        return default
+
+
+def _load_settings():
+    """Lädt alle Service-Settings mit sicheren Lesern; repariert defekte Werte durch Zurückschreiben der Defaults."""
+    global ENABLED, IS_MAIN_SYSTEM, OVERWRITE_STATIC, CUSTOM_FOLDER, SPECIFIC_CUSTOM_FOLDER
+    global STATIC_FOLDERS, IMAGE_SOURCE_IDX, IMAGE_LIST_URL, IMAGE_LOCAL_FOLDER, IMAGE_NETWORK_PATH
+    global ENABLE_IMAGE_ROTATION, ENABLE_ADDON_SYNC, ENABLE_ADDON_STARTUPFILE
+    ENABLED = _safe_get_bool('enable_sync', False)
+    IS_MAIN_SYSTEM = _safe_get_bool('is_main_system', True)
+    OVERWRITE_STATIC = _safe_get_bool('overwrite_static', False)
+    CUSTOM_FOLDER = _safe_get_string('custom_folder', '')
+    SPECIFIC_CUSTOM_FOLDER = _safe_get_string('specific_custom_folder', '')
+    static_raw = _safe_get_string('static_folders', '')
+    STATIC_FOLDERS = [f.strip() for f in static_raw.split(',') if f.strip()]
+    try:
+        IMAGE_SOURCE_IDX = int(_safe_get_string('image_source', '0') or '0')
+    except (ValueError, TypeError):
+        IMAGE_SOURCE_IDX = 0
+    IMAGE_LIST_URL = _safe_get_string('image_list_url', '')
+    IMAGE_LOCAL_FOLDER = xbmcvfs.translatePath(_safe_get_string('image_local_folder', '') or '')
+    IMAGE_NETWORK_PATH = (_safe_get_string('image_network_path', '') or '').strip()
+    ENABLE_IMAGE_ROTATION = _safe_get_bool('enable_image_rotation', False)
+    ENABLE_ADDON_SYNC = _safe_get_bool('addon_sync', True)
+    ENABLE_ADDON_STARTUPFILE = _safe_get_bool('startup_file', False)
+
+
+# Defaults (werden in _load_settings() überschrieben)
+ENABLED = False
+IS_MAIN_SYSTEM = True
+OVERWRITE_STATIC = False
+CUSTOM_FOLDER = ''
+SPECIFIC_CUSTOM_FOLDER = ''
+STATIC_FOLDERS = []
+IMAGE_SOURCE_IDX = 0
+IMAGE_LIST_URL = ''
+IMAGE_LOCAL_FOLDER = ''
+IMAGE_NETWORK_PATH = ''
+ENABLE_IMAGE_ROTATION = False
+ENABLE_ADDON_SYNC = True
+ENABLE_ADDON_STARTUPFILE = False
+
+# Pfade
 ADDON_ID = ADDON.getAddonInfo('id')
 LOCAL_FAVOURITES = os.path.join(xbmcvfs.translatePath('special://userdata'), 'favourites.xml')
 STATIC_FAVOURITES_PATH = os.path.join(xbmcvfs.translatePath('special://userdata'), 'addon_data', ADDON_ID, 'Static Favourites')
 ICON_PATH = os.path.join(ADDON.getAddonInfo('path'), 'resources', 'images', 'icon.png')
-
-# Statische Ordner (leere Einträge entfernt)
-STATIC_FOLDERS = [f.strip() for f in ADDON.getSettingString('static_folders').split(',') if f.strip()]
-
-# Bilder
-IMAGE_SOURCE_IDX = int(ADDON.getSettingString('image_source') or '0')
-IMAGE_LIST_URL = ADDON.getSettingString('image_list_url')
-IMAGE_LOCAL_FOLDER = xbmcvfs.translatePath(ADDON.getSettingString('image_local_folder') or '')
-IMAGE_NETWORK_PATH = (ADDON.getSettingString('image_network_path') or '').strip()
 LOCAL_IMAGE_PATH = os.path.join(xbmcvfs.translatePath('special://userdata'), 'marvel.jpg')
 ADDON_IMAGE_PATH = os.path.join(xbmcvfs.translatePath('special://home/addons/plugin.video.xstream'), 'fanart.jpg')
-ENABLE_IMAGE_ROTATION = ADDON.getSettingBool('enable_image_rotation')
 IMAGE_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.webp', '.gif', '.bmp')
-
-# EXTRA SYNC
-ENABLE_ADDON_SYNC = ADDON.getSettingBool('addon_sync')
-ENABLE_ADDON_STARTUPFILE = ADDON.getSettingBool('startup_file')
-
-# Mehrsprachigkeit
 LANGUAGE = ADDON.getLocalizedString
 
 
 def _get_active_profile_settings():
     """
-    Liest die Einstellungen des aktiven Verbindungsprofils.
+    Liest die Einstellungen des aktiven Verbindungsprofils (nur sichere Leser).
     Returns: dict mit connection_type, host, user, password, base_path, sftp_port
     """
-    idx = int(ADDON.getSettingString('active_profile') or '0')
+    try:
+        idx = int(_safe_get_string('active_profile', '0') or '0')
+    except (ValueError, TypeError):
+        idx = 0
     idx = 0 if idx not in (0, 1, 2) else idx
     if idx == 0:
-        # Profil 1 (Standard): bisherige Keys
-        ct = int(ADDON.getSettingString('connection_type') or '0')
+        try:
+            ct = int(_safe_get_string('connection_type', '0') or '0')
+        except (ValueError, TypeError):
+            ct = 0
         ct = ('ftp', 'sftp', 'smb')[ct] if 0 <= ct <= 2 else 'ftp'
         return {
             'connection_type': ct,
-            'host': ADDON.getSettingString('ftp_host') or '',
-            'user': ADDON.getSettingString('ftp_user') or '',
-            'password': ADDON.getSettingString('ftp_pass') or '',
-            'base_path': ADDON.getSettingString('ftp_base_path') or '',
-            'sftp_port': ADDON.getSettingString('sftp_port') or '22',
+            'host': _safe_get_string('ftp_host', ''),
+            'user': _safe_get_string('ftp_user', ''),
+            'password': _safe_get_string('ftp_pass', ''),
+            'base_path': _safe_get_string('ftp_base_path', ''),
+            'sftp_port': _safe_get_string('sftp_port', '22'),
         }
     if idx == 1:
         prefix = 'profile_2_'
     else:
         prefix = 'profile_3_'
-    ct = int(ADDON.getSettingString(prefix + 'connection_type') or '0')
+    try:
+        ct = int(_safe_get_string(prefix + 'connection_type', '0') or '0')
+    except (ValueError, TypeError):
+        ct = 0
     ct = ('ftp', 'sftp', 'smb')[ct] if 0 <= ct <= 2 else 'ftp'
     return {
         'connection_type': ct,
-        'host': ADDON.getSettingString(prefix + 'host') or '',
-        'user': ADDON.getSettingString(prefix + 'user') or '',
-        'password': ADDON.getSettingString(prefix + 'pass') or '',
-        'base_path': ADDON.getSettingString(prefix + 'base_path') or '',
-        'sftp_port': ADDON.getSettingString(prefix + 'sftp_port') or '22',
+        'host': _safe_get_string(prefix + 'host', ''),
+        'user': _safe_get_string(prefix + 'user', ''),
+        'password': _safe_get_string(prefix + 'pass', ''),
+        'base_path': _safe_get_string(prefix + 'base_path', ''),
+        'sftp_port': _safe_get_string(prefix + 'sftp_port', '22'),
     }
 
 
@@ -424,11 +472,13 @@ def sync_addon_data():
 # =========================
 #   Hauptablauf (Start-up-Reihenfolge)
 # =========================
-# 0) Ersteinrichtungs-Assistent (nur wenn first_run_done nicht gesetzt)
-# 1) Auto-Clean (wenn aktiv und fällig)
-# 2) FTP-Sync (addon_data, Favoriten), Bildrotation, Custom_Startup, uservar
-# 3) Texture-Cache leeren, ReloadSkin
+# 0) Settings laden (repariert defekte Werte)
+# 1) Ersteinrichtungs-Assistent (nur wenn first_run_done nicht gesetzt)
+# 2) Auto-Clean (wenn aktiv und fällig)
+# 3) FTP-Sync (addon_data, Favoriten), Bildrotation, Custom_Startup, uservar
+# 4) Texture-Cache leeren, ReloadSkin
 #
+_load_settings()
 try:
     from resources.lib import first_run
     first_run.maybe_run()

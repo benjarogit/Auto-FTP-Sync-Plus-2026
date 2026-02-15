@@ -2,6 +2,18 @@
 
 Alle wichtigen Änderungen werden hier dokumentiert. Das Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.18] – 2026-02-15
+
+- Plugin- und Repo-Updates seit v1.0.17.
+
+### English
+
+Release 1.0.18
+
+- Plugin and repo updates since v1.0.17.
+
+---
+
 ## [1.0.17] – 2026-02-15
 
 - Plugin- und Repo-Updates seit v1.0.16.
@@ -223,7 +235,8 @@ First release: Sync favourites and addon_data between devices, create backups, a
 
 **Repository:** The addon is installed and updated via the Doku-Kanal repository (GitHub Raw URLs). See README and REPO_SETUP for repo URLs.
 
----[1.0.4]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.4[1.0.6]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.6[1.0.8]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.8[1.0.10]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.10[1.0.12]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.12[1.0.14]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.14[1.0.16]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.16
+---[1.0.4]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.4[1.0.6]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.6[1.0.8]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.8[1.0.10]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.10[1.0.12]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.12[1.0.14]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.14[1.0.16]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.16[1.0.18]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.18
+
 [1.0.17]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.17
 
 [1.0.15]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.15

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.dokukanal" name="Doku-Kanal Repository" version="1.0.17" provider-name="Doku-Kanal">
+<addon id="repository.dokukanal" name="Doku-Kanal Repository" version="1.0.18" provider-name="Doku-Kanal">
 	<requires>
 		<import addon="xbmc.addon" version="21.0.0"/>
 	</requires>

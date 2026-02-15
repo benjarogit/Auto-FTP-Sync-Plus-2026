@@ -15,8 +15,9 @@ import zipfile
 from pathlib import Path
 
 # Paths relative to repo/
+# Es werden immer die aktuellen Dateien aus addons/ (Plugin, Skin) gepackt – keine Kopie aus ~/.kodi.
 REPO_DIR = Path(__file__).resolve().parent
-ADDONS_SOURCE = REPO_DIR.parent / "addons"  # .kodi/addons
+ADDONS_SOURCE = REPO_DIR.parent / "addons"
 OUTPUT_DIR = REPO_DIR / "output"
 ADDON_IDS = [
     "plugin.program.auto.ftp.sync",
