@@ -2,6 +2,16 @@
 
 Alle wichtigen Änderungen werden hier dokumentiert. Das Projekt folgt [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.4] – 2026-02-15
+
+- Release 1.0.4
+
+### English
+
+- Release 1.0.4
+
+---
+
 ## [1.0.3] – 2026-02-15
 
 - Release 1.0.3
@@ -61,7 +71,8 @@ First release: Sync favourites and addon_data between devices, create backups, a
 
 **Repository:** The addon is installed and updated via the Doku-Kanal repository (GitHub Raw URLs). See README and REPO_SETUP for repo URLs.
 
----
+---[1.0.4]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.4
+
 [1.0.3]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.3
 
 [1.0.2]: https://github.com/benjarogit/Auto-FTP-Sync-Plus-2026/releases/tag/v1.0.2

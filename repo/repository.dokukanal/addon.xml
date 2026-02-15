@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.dokukanal" name="Doku-Kanal Repository" version="1.0.3" provider-name="Doku-Kanal">
+<addon id="repository.dokukanal" name="Doku-Kanal Repository" version="1.0.4" provider-name="Doku-Kanal">
 	<extension point="xbmc.addon.repository">
 		<!-- Repo served from GitHub raw; branch: main -->
 		<dir>
