@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<addon id="plugin.program.auto.ftp.sync" version="1.0.8" name="Auto FTP Sync" provider-name="Doku-Kanal">
+<addon id="plugin.program.auto.ftp.sync" version="1.0.12" name="Auto FTP Sync" provider-name="Doku-Kanal">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0"/>
-		<import addon="xbmc.core" version="21.0.0"/>
+		<import addon="xbmc.addon" version="21.0.0"/>
 	</requires>
 	<extension point="xbmc.service" library="auto_ftp_sync.py" start="startup"/>
 	<extension point="xbmc.python.pluginsource" library="plugin.py">
