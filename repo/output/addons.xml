@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
-<addon id="plugin.program.auto.ftp.sync" version="1.0.0" name="Auto FTP Sync" provider-name="Doku-Kanal">
+<addon id="plugin.program.auto.ftp.sync" version="1.0.1" name="Auto FTP Sync" provider-name="Doku-Kanal">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0"/>
 	</requires>
@@ -31,7 +31,7 @@
 		</assets>
 	</extension>
 </addon>
-<addon id="repository.dokukanal" name="Doku-Kanal Repository" version="1.0.0" provider-name="Doku-Kanal">
+<addon id="repository.dokukanal" name="Doku-Kanal Repository" version="1.0.1" provider-name="Doku-Kanal">
 	<extension point="xbmc.addon.repository">
 		<!-- Repo served from GitHub raw; branch: main -->
 		<dir>
@@ -50,7 +50,7 @@
 		</assets>
 	</extension>
 </addon>
-<addon id="skin.arctic.zephyr.doku" version="1.0.0" name="Arctic Zephyr – Doku-Kanal" provider-name="jurialmunkey, beatmasterrs">
+<addon id="skin.arctic.zephyr.doku" version="1.0.1" name="Arctic Zephyr – Doku-Kanal" provider-name="jurialmunkey, beatmasterrs">
     <requires>
         <import addon="xbmc.gui" version="5.17.0"/>
         <import addon="plugin.program.auto.ftp.sync" version="1.0.0" optional="true"/>
