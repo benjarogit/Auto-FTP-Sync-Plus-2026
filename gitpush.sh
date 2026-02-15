@@ -26,10 +26,16 @@ git add repo/output/ 2>/dev/null || true
 echo "--- git status ---"
 git status
 
-git commit -m "$COMMIT_MSG" || { echo "Nothing to commit or commit failed."; exit 0; }
-
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
-git push origin "$BRANCH"
+if git commit -m "$COMMIT_MSG"; then
+  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  git push origin "$BRANCH"
+else
+  echo "Nothing to commit or commit failed."
+  if [ -z "$TAG" ]; then
+    exit 0
+  fi
+  echo "Creating tag and release only (on current HEAD)."
+fi
 
 if [ -n "$TAG" ]; then
   TAG=$(echo "$TAG" | sed 's/^v//')
